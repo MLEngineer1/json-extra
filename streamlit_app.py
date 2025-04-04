@@ -24,5 +24,10 @@ uploaded_file = st.file_uploader("Upload a JSON file", type=["json"])
 if uploaded_file is not None:
     data = json.load(uploaded_file)
     id_list = extract_ids(data)
+
     st.write("Extracted IDs:")
     st.json(id_list)
+
+    # Display raw list (newline separated, no quotes)
+    ids_text = '\n'.join(str(i) for i in id_list)
+    st.text_area("Copyable List (no quotes)", value=ids_text, height=300)
